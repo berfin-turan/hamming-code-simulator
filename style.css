@@ -233,32 +233,26 @@ textarea {
         flex-direction: column; 
     }
 
-    /* Lejant kısmını da alt alta al */
+    /* Lejant kısmını alt alta diz */
     .legend {
         flex-direction: column;
         gap: 10px; 
-        align-items: flex-start; /* Yazıları sola yaslar */
+        align-items: flex-start;
+        padding: 15px;
     }
 
-    /* Canvas'ın mobilde ekranı tamamen doldurması ama taşmaması için */
+    /* Canvas'ı esnek yap ve genişliği sabitle */
     canvas {
         max-width: 100%;
+        width: 100% !important;
         height: auto !important;
         margin-bottom: 20px;
         display: block;
     }
     
-    /* Konteyner'ı mobilde daha rahat kullanmak için */
+    /* Konteyner'ı mobilde daha rahat kullan */
     .container {
         padding: 20px;
         width: 98%;
     }
 }
-@media (max-width: 768px) {
-    canvas {
-        width: 100%;       /* Canvas'ın ekranın tamamını kullanmasını sağlar */
-        height: auto;      /* Orantıyı korur */
-        max-width: 100%;
-    }
-}
-
