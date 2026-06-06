@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gelişmiş Hamming Code Simülatörü</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1><i class="fa-solid fa-microchip"></i> Hamming Simülatörü</h1>
+        <p>Veri boyutunu seçin, veriyi girin ve hataları simüle etmek için kutulara tıklayın.</p>
+
+        <div class="control-panel">
+            <select id="modeSelect">
+                <option value="8">8-Bit Modu</option>
+                <option value="16">16-Bit Modu</option>
+                <option value="32">32-Bit Modu</option>
+            </select>
+            <input type="text" id="dataInput" maxlength="8" value="10101010" placeholder="Veri Girin">
+            <button id="generateBtn"><i class="fa-solid fa-cogs"></i>Kodu Oluştur</button>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item"><span class="box data-box"></span> Veri Biti</div>
+            <div class="legend-item"><span class="box parity-box"></span> Kontrol Biti (Parite)</div>
+            <div class="legend-item"><span class="box error-box"></span> Hatalı Bit</div>
+        </div>
+
+        <canvas id="simulatorCanvas" width="850" height="250"></canvas>
+
+        <div class="info-section">
+            <div class="log-panel">
+                <h3><i class="fa-solid fa-server"></i>Sistem Logları (Arka Plan İşlemleri)</h3>
+                <textarea id="systemLog" readonly></textarea>
+            </div>
+
+            <div class="status-panels">
+                <div id="syndromeDisplay" class="status-box">Sendrom: Bekleniyor...</div>
+                <div id="correctedDataDisplay" class="status-box">Düzeltme Durumu: Bekleniyor...</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
