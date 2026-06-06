@@ -8,9 +8,9 @@ const correctedDataDisplay = document.getElementById('correctedDataDisplay');
 const systemLog = document.getElementById('systemLog');
 
 let currentBits = [];
-const boxWidth = 40;
-const boxHeight = 40;
-const gap = 10;
+const boxWidth = 50;  // 40 yerine 50 yaptık
+const boxHeight = 50; // 40 yerine 50 yaptık
+const gap = 12;
 
 modeSelect.addEventListener('change', () => {
     const mode = parseInt(modeSelect.value);
@@ -115,23 +115,26 @@ function calculateDynamicHamming(dataStr) {
 }
 
 function calculateCoordinates() {
-    const maxPerRow = 16;
-    const totalRows = Math.ceil(currentBits.length / maxPerRow);
-
+    // Canvas'ın genişliğine göre kutuların kaç tane sığacağını hesapla
+    const canvasWidth = canvas.width;
+    const padding = 20; 
+    const bitsPerRow = Math.floor((canvasWidth - padding) / (boxWidth + gap));
+    
+    // Satır sayısını dinamik hesapla
+    const totalRows = Math.ceil(currentBits.length / bitsPerRow);
     canvas.height = 30 + (totalRows * (boxHeight + 45)) + 30;
 
-    for (let r = 0; r < totalRows; r++) {
-        const bitsInThisRow = Math.min(maxPerRow, currentBits.length - r * maxPerRow);
+    for (let i = 0; i < currentBits.length; i++) {
+        const row = Math.floor(i / bitsPerRow);
+        const col = i % bitsPerRow;
+
+        // Kutuları ortalamak için satır genişliğini hesapla
+        const bitsInThisRow = Math.min(bitsPerRow, currentBits.length - row * bitsPerRow);
         const rowWidth = (bitsInThisRow * boxWidth) + ((bitsInThisRow - 1) * gap);
+        const startX = (canvasWidth - rowWidth) / 2;
 
-        const currentStartX = (canvas.width - rowWidth) / 2;
-        const currentY = 30 + r * (boxHeight + 45);
-
-        for (let c = 0; c < bitsInThisRow; c++) {
-            const i = r * maxPerRow + c;
-            currentBits[i].x = currentStartX + c * (boxWidth + gap);
-            currentBits[i].y = currentY;
-        }
+        currentBits[i].x = startX + col * (boxWidth + gap);
+        currentBits[i].y = 30 + row * (boxHeight + 45);
     }
 }
 
