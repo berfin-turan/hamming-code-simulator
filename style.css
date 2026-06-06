@@ -236,9 +236,8 @@ textarea {
     /* Lejant kısmını da alt alta al */
     .legend {
         flex-direction: column;
-        gap: 8px;
-        align-items: flex-start;
-        padding: 15px;
+        gap: 10px; 
+        align-items: flex-start; /* Yazıları sola yaslar */
     }
 
     /* Canvas'ın mobilde ekranı tamamen doldurması ama taşmaması için */
@@ -256,11 +255,10 @@ textarea {
     }
 }
 @media (max-width: 768px) {
-    @media (max-width: 768px) {
     canvas {
         width: 100%;       /* Canvas'ın ekranın tamamını kullanmasını sağlar */
         height: auto;      /* Orantıyı korur */
         max-width: 100%;
     }
 }
-}
+
